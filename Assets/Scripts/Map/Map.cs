@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshCollider))]
 public class Map : MonoBehaviour
 {
-    [SerializeField] private Map_Data data;
+    [SerializeField] public Map_Data data;
     [SerializeField] private Map_Generation gen;
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private MeshFilter meshFilter;
@@ -23,9 +23,9 @@ public class Map : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
+        Generate();
     }
     public void Generate()
     {
@@ -63,7 +63,6 @@ public class Map : MonoBehaviour
         }
 
         meshFilter.mesh = mesh; 
-        meshRenderer.material = new Material(Shader.Find("Standard"));
 
     }
 

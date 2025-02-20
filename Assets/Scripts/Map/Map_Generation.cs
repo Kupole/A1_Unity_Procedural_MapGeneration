@@ -63,7 +63,7 @@ public class Map_Generation : MonoBehaviour
         int count = 0;
         foreach (Vector3 vertice in vertices)
         {
-            Vector3 temp = new Vector3(vertice.x,vertice.y + (octave.values[(int)vertice.x * (int)vertice.z + (int)vertice.z].y), vertice.z);
+            Vector3 temp = new Vector3(vertice.x,(vertice.y + (octave.values[((int)data.xSize+1) * (int)vertice.z + (int)vertice.z].y))-(octave.amplitude/2), vertice.z);
             newVertices[count] = temp;
             count++;
         }
@@ -76,7 +76,7 @@ public class Map_Generation : MonoBehaviour
         {
             for (int x = 0; x <= octave.xSize; x++)
             {
-                octave.values[i] = new Vector3(x,Mathf.PerlinNoise((float)x/octave.frequency / octave.xSize,(float)z/octave.frequency/octave.zSize)*octave.amplitude,z);
+                octave.values[i] = new Vector3(x,Mathf.PerlinNoise((float)x/octave.frequency / (octave.xSize+1),(float)z/octave.frequency/(octave.zSize+1))*octave.amplitude,z);
                 i++;
             }
         }
