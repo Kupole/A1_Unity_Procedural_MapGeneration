@@ -32,9 +32,10 @@ public class Map : MonoBehaviour
         PrepareMesh(mesh, meshFilter);
         AssignComponents(); //Delete this later
         gen.InitiateArrays(data);
-        gen.GenerateVertices(data);
+        gen.GenerateTriangles(data);
 
         UpdateMesh();
+        
     }
 
     private void AssignComponents()
@@ -55,6 +56,15 @@ public class Map : MonoBehaviour
         mesh.Clear();
 
         mesh.vertices = data.vertices;
+        if (data.triangles != null)
+        {
+            mesh.triangles = data.triangles;
+            mesh.RecalculateNormals();
+        }
+
+        meshFilter.mesh = mesh; 
+        meshRenderer.material = new Material(Shader.Find("Standard"));
+
     }
 
     public void PrepareMesh(Mesh mesh, MeshFilter meshFilter)
@@ -68,7 +78,7 @@ public class Map : MonoBehaviour
             for (int i = 0; i < data.vertices.Length; i++)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawSphere(data.vertices[i], 1f);
+                Gizmos.DrawSphere(data.vertices[i], 0.02f);
             }
         }
     }

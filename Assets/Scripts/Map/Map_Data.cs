@@ -23,10 +23,9 @@ public class Map_Data : MonoBehaviour
     public List<Octave> octaves = new List<Octave>();
     private int _maxYRange = 25;
     public int maxYRange => _maxYRange;
-    private int _xSize = 25;
-    public int xSize => _xSize;
-    private int _zSize = 25;
-    public int zSize => _zSize;
+    public int xSize = 25;
+    public int zSize = 25;
+    public int amplitude = 2;
     private int _realY;
     public int realY => _realY;
 
